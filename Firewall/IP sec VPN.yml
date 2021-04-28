@@ -1,0 +1,43 @@
+---
+
+- name: Configuring IPSec VPN
+
+  hosts: edge router
+
+  tasks:
+
+  - name: config VPN
+    ios_config:
+      lines:
+       - hash md5
+       - authentication pre-share
+       - group 1
+       - lifetime 86400
+       - encryption aes
+      parents: crypto isakmp policy 1
+  - name: pre-shared key
+    ios_config:
+      lines:
+       - crypto isakmp key cisco
+  - name: ACL to allow LAN IP traffic
+    ios_config:
+      lines:
+       - premit ip 10.254.0.0 0.0.255.255 20.254.0.0 0.0.255.255
+      parents: ip access-list extended VPN-TRAFFIC
+  - name: creating IPSec transfrom
+    ios_config:
+      lines:
+       - crypto ipsec transform-set TS esp-3des esp-md5-hmac
+  - name: Create crypto map
+    ios_config:
+      lines:
+       - set peer 10.1.1.2
+       - set transform-set TS
+       - match address VPN-TRAFFIC
+      partents: crypto map CMAP 10 ipsec-isakmp
+  - name: apply crypto map to the public interface
+    ios_config: 
+      lines:
+       - crypto map CMAP
+      partents: interface gig 0/2
+      

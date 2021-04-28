@@ -1,0 +1,25 @@
+---
+
+- name: DHCP snooping
+
+  hosts: MSW
+
+  tasks:
+
+
+  - name: config dhcp snooping enable
+    ios_config:
+      lines:
+       - ip dhcp snooping
+       - ip dhcp snooping vlan 10
+       - ip dhcp snooping vlan 20
+       - ip dhcp snooping vlan 30
+       - ip dhcp snooping vlan 40
+       - ip dhcp snooping vlan 50
+       - no ip dhcp snooping information option
+  - name: configuring trusted port
+    ios_config:
+      lines:
+       - ip dhcp snooping trust
+      parents: interface gig 3/0
+ 

@@ -1,0 +1,20 @@
+---
+
+- name: config ospf in SW01
+
+  hosts: SW01 
+
+  tasks:
+
+  - name: basic config ospf
+    ios_config:
+      lines:
+       - network 10.254.1.0 0.0.0.63 area 0
+       - network 10.254.1.64 0.0.0.31 area 0
+       - network 10.254.1.96 0.0.0.31 area 0
+       - network 10.254.1.128 0.0.0.15 area 0
+       - network 10.254.1.144 0.0.0.15 area 0
+       - network 172.16.1.0 0.0.0.255 area 0
+      parents: router ospf 100
+
+  

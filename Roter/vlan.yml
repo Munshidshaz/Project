@@ -1,0 +1,23 @@
+---
+
+- name: General Config
+
+  hosts: MSW
+
+  tasks:
+
+  - name: Config VLANs
+    ios_config:
+      lines:
+       - vlan 10
+       - name Finance
+       - vlan 20
+       - name Front office
+       - vlan 30
+       - name HR
+       - vlan 40
+       - name Legale
+       - vlan 50 
+       - name IT
+        
+      

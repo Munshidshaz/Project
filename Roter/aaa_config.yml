@@ -1,0 +1,16 @@
+---
+
+- name: General Config
+
+  hosts: Switches
+
+  tasks:
+
+  - name: Tacacs Server Host Configuration
+    cisco.nxos.nxos_aaa_server_host:
+      state: present
+      server_type: tacacs
+      tacacs_port: 89
+      host_timeout: 10
+      address: 192.168.1.120
+

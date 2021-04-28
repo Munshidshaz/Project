@@ -1,0 +1,12 @@
+---
+
+- name: VTP mode transparent
+
+  hosts: switeches
+
+  tasks:
+
+  - name: Config VLANs
+    ios_config:
+      lines:
+       - vtp mode transparent

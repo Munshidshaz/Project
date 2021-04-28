@@ -1,0 +1,26 @@
+
+---
+
+- name: VLAN
+
+  hosts: SW03
+
+  gather_facts: false
+
+  connection: local
+
+  tasks:
+
+  - name: Config vlan ports
+    ios_config:
+      lines:
+        - interface range gig 1/0-3, gig 2/0-1
+        - switchport mode access
+        - switchport access vlan 10
+  - name: Config vlan ports
+    ios_config:
+      lines:
+        - interface range gig 2/2-3, gig 3/0-1
+        - switchport mode access
+        - switchport access vlan 20
+

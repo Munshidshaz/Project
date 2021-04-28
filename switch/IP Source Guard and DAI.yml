@@ -1,0 +1,30 @@
+---
+
+- name: Port-Security 
+
+  hosts: ASW
+
+  tasks:
+
+
+  - name: Configuring for VLAN 10 - 50
+    ios_config:
+      lines:
+       - ip arp inspection vlan 10
+       - ip arp inspection vlan 20
+       - ip arp inspection vlan 30
+       - ip arp inspection vlan 40
+       - ip arp inspection vlan 50
+
+  - name: configuring arp inspection trust port
+    ios_config:
+      lines:
+       - ip arp inspection trust
+      parents: interface range port-channel 1-2
+      
+  - name: configuring static ip 
+    ios_config:
+      lines:
+       - ip verify source
+      parents: int range gig 1/1 , gig 2/2
+       

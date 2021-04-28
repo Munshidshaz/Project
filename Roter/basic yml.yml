@@ -1,0 +1,13 @@
+---
+
+- name: name
+
+  hosts: switches
+
+  tasks:
+
+  - name: Task name
+    ios_config:  
+      lines:
+       - command 1
+       - command 2

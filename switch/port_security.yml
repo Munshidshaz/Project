@@ -1,0 +1,18 @@
+---
+
+- name: Port-Security 
+
+  hosts: ASW
+
+  tasks:
+
+
+  - name: Configuring port-security 
+    ios_config:
+      lines:
+       - int range gig 1/0-3, gig 2/0-1, gig 2/2-3, gig 3/0-1
+       - switchport port-security maximum 2
+       - switchport port-security violation restrict
+       - switchport port-security
+     
+

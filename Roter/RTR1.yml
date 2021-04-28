@@ -1,0 +1,30 @@
+
+---
+
+- name: General Config
+
+  hosts: routers
+
+  tasks:
+
+  - name: Add Banner
+
+    ios_banner:
+      banner: login
+      text: |
+        ************************************************************
+          * * * * * * * * * * W A R N I N G * * * * * * * * * *
+
+
+         ********************LOG OFF IMMEDIATELY**************
+
+        
+          * * * * * * * * * * W A R N I N G * * * * * * * * * *
+        ************************************************************
+      state: present
+
+  - name: Add loopback
+
+    ios_interface:
+      name: Loopback21
+      state: present 

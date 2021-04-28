@@ -1,0 +1,31 @@
+---
+
+- name: General Config
+
+  hosts: MSW
+
+  tasks:
+
+  - name: Config VLANs
+    ios_config:
+      lines:
+       - interface vlan 10
+       - ip address 10.254.1.1 255.255.255.192
+       - no shutdown
+       - ip helper 192.168.1.100
+       - interface vlan 20
+       - ip address 10.254.1.65 255.255.255.224
+       - no shutdown
+       - ip helper 192.168.1.100
+       - interface vlan 30
+       - ip address 10.254.1.97 255.255.255.224
+       - no shutdown
+       - ip helper 192.168.1.100
+       - interface vlan 40
+       - ip address 10.254.1.129 255.255.255.240
+       - no shutdown
+       - ip helper 192.168.1.100
+       - interface vlan 50
+       - ip address 10.254.1.145 255.255.255.240
+       - no shutdown
+       - ip helper 192.168.1.100

@@ -1,0 +1,48 @@
+---
+
+- name: HSRP
+
+  hosts: SW02
+
+  tasks:
+
+  - name: Config vlan 10 HSRP SW02
+    ios_config:
+      lines:
+       - standby 1 ip 10.254.1.10
+       - standby 1 priority 100
+       - standby 1 timer 1 3
+       - exit
+      parents: interface vlan 10 
+  - name: config vlan 20 HSRP SW02
+    ios_config:
+      lines:
+       - standby 1 ip 10.254.1.70
+       - standby 1 priority 100
+       - standby 1 timer 1 3
+       - exit
+      parents: interface vlan 20
+  - name: config vlan 30 HSRP SW02
+    ios_config:
+      lines:
+       - standby 1 ip 10.254.1.100
+       - standby 1 priority 100
+       - standby 1 timer 1 3
+       - exit
+      parents: interface vlan 30
+  - name: config vlan 40 HSRP SW02
+    ios_config:
+      lines:
+       - standby 1 ip 10.254.1.131
+       - standby 1 priority 100
+       - standby 1 timer 1 3
+       - exit
+      parents: interface vlan 40
+  - name: config vlan 50 HSRP SW02
+    ios_config:
+      lines:
+       - standby 1 ip 10.254.1.147
+       - standby 1 priority 100
+       - standby 1 timer 1 3
+       - exit
+      parents: interface vlan 50
